@@ -41,6 +41,7 @@ app.MapPut("/v1/customers/{id}", async (int id, Customer model, AppDbContext dbC
     customer.Name = model.Name;
     customer.Email = model.Email;
 
+    dbContext.Customers.Update(customer);
     await dbContext.SaveChangesAsync();
 
     return Results.Ok(customer);    
