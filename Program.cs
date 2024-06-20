@@ -22,7 +22,7 @@ app.MapGet("/v1/customers/", async (AppDbContext dbContext) =>
     await dbContext.Customers.AsNoTracking().ToListAsync());
 
 app.MapGet("/v1/customers/{id}", async (int id, AppDbContext dbContext) =>
-    await dbContext.Customers.AsNoTracking().FindAsync(id) is Customer customer ? Results.Ok(customer) : Results.NotFound());
+    await dbContext.Customers.FindAsync(id) is Customer customer ? Results.Ok(customer) : Results.NotFound());
 
 app.MapPost("/v1/customers/", async (Customer model, AppDbContext dbContext) =>
 {
